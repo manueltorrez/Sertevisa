@@ -22,6 +22,10 @@ namespace MVC.Entidades
         [Display(Name = "Equipo")]
         public int EquipodId { get; set; }
 
+        [Required(ErrorMessage = "Se requiere seleccionar el {0}")]
+        [Display(Name = "Estado")]
+        public int EstadoId { get; set; }
+
         [Required(ErrorMessage = "Se requiere el {0} del equipo")]
         [Display(Name = "Número de Serie")]
         public string NumeroSerie { get; set; }
@@ -56,10 +60,12 @@ namespace MVC.Entidades
         public virtual Cliente Clientes { get; set; }
 
         [ForeignKey("EquipoId")]
-        public virtual Equipo Equipos { get; set; }                
+        public virtual Equipo Equipos { get; set; }
+
+        [ForeignKey("EstadoId")]
+        public virtual Estado Estado { get; set; }
 
         public virtual IEnumerable<FacturaDetalle> FacturaDetalles { get; set; }
-
-        public virtual Estado Estado { get; set; }
+        
     }
 }

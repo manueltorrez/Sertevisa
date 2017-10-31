@@ -22,5 +22,7 @@ namespace MVC.Entidades
 
         [ForeignKey("MarcaId")]
         public virtual Marca Marcas { get; set; }
+
+
     }
 }
