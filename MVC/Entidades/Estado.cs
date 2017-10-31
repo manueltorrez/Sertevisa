@@ -26,6 +26,6 @@ namespace MVC.Entidades
         [Display(Name = "Activo")]
         public bool Activo { get; set; }
 
-        public virtual OrdenEntrada OrdenEntrada { get; set; }
+        public virtual IEnumerable<OrdenEntrada> OrdenEntrada { get; set; }
     }
 }
