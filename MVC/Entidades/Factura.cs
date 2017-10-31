@@ -32,14 +32,18 @@ namespace MVC.Entidades
         [Required]
         [DataType(DataType.Date)]
         [ScaffoldColumn(false)]
-        public DateTime DateModification { get; set; }
-
-
-        public virtual Cliente Clientes { get; set; }
+        public DateTime DateModification { get; set; }          
 
         public virtual IEnumerable<FacturaDetalle> FacturasDetalle { get; set; }
 
         public virtual IEnumerable<Desglose> Desgloses { get; set; }
+
+        [ForeignKey("ClienteId")]
+        public virtual Cliente Clientes { get; set; }
+
+        [ForeignKey("AdelantoId")]
+        public IEnumerable<Adelanto> Adelantos { get; set; }
+
     }
 }
 // Para facturación se hace el campo con opción especial, además se crea el script

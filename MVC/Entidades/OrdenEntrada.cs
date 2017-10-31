@@ -18,9 +18,13 @@ namespace MVC.Entidades
         [Display(Name = "Cliente")]
         public int ClienteId { get; set; }
 
-        [Required(ErrorMessage = "Se requiere seleccionar el {0} del equipo")]
+        [Required(ErrorMessage = "Se requiere seleccionar el {0}")]
+        [Display(Name = "Equipo")]
+        public int EquipodId { get; set; }
+
+        [Required(ErrorMessage = "Se requiere el {0} del equipo")]
         [Display(Name = "Número de Serie")]
-        public int NumeroSerie { get; set; }
+        public string NumeroSerie { get; set; }
 
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
         [Display(Name = "Descripción")]
@@ -51,10 +55,8 @@ namespace MVC.Entidades
         [ForeignKey("ClienteId")]
         public virtual Cliente Clientes { get; set; }
 
-        public virtual Marca Marcas { get; set; }
-
-        [ForeignKey("AdelantoId")]
-        public IEnumerable<Adelanto> Adelantos { get; set; }
+        [ForeignKey("EquipoId")]
+        public virtual Equipo Equipos { get; set; }                
 
         public virtual IEnumerable<FacturaDetalle> FacturaDetalles { get; set; }
 

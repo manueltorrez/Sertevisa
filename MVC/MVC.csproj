@@ -202,6 +202,7 @@
     <Compile Include="Entidades\Adelanto.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Desglose.cs" />
+    <Compile Include="Entidades\Equipo.cs" />
     <Compile Include="Entidades\Estado.cs" />
     <Compile Include="Entidades\Factura.cs" />
     <Compile Include="Entidades\FacturaDetalle.cs" />
@@ -209,6 +210,10 @@
     <Compile Include="Entidades\OrdenEntrada.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710310026312_Primera.cs" />
+    <Compile Include="Migrations\201710310026312_Primera.Designer.cs">
+      <DependentUpon>201710310026312_Primera.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -293,6 +298,11 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710310026312_Primera.resx">
+      <DependentUpon>201710310026312_Primera.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

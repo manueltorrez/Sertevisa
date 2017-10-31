@@ -17,7 +17,6 @@ namespace MVC.Entidades
         }
 
         [Key]
-        [ForeignKey("OrdenEntrada")]
         public int EstadoId { get; set; }
 
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
