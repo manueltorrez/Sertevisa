@@ -66,6 +66,7 @@ namespace MVC.Entidades
         public virtual Estado Estado { get; set; }
 
         public virtual IEnumerable<FacturaDetalle> FacturaDetalles { get; set; }
-        
+
+        public virtual IEnumerable<Adelanto> Adelantos { get; set; }
     }
 }

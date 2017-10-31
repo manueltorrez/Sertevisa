@@ -18,11 +18,12 @@ namespace MVC.Entidades
 
         [Required(ErrorMessage = "Se requiere el {0}")]
         [Display(Name = "Modelo")]
+        [MaxLength(20)]
         public string Modelo { get; set; }
 
         [ForeignKey("MarcaId")]
         public virtual Marca Marcas { get; set; }
 
-
+        public virtual IEnumerable<OrdenEntrada> OrdenEntradas { get; set; }
     }
 }

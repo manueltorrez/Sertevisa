@@ -19,6 +19,6 @@ namespace MVC.Entidades
         [Display(Name = "Nombre")]
         public string Nombre { get; set; }
 
-        public virtual OrdenEntrada OrdenEntrada { get; set; }
+        public virtual IEnumerable<Equipo> Equipos { get; set; }
     }
 }
