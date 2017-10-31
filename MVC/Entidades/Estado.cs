@@ -21,6 +21,7 @@ namespace MVC.Entidades
 
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
         [Display(Name = "Descripción")]
+        [MaxLength(35)]
         public string Descripción { get; set; }
 
         [Display(Name = "Activo")]

@@ -105,7 +105,22 @@ namespace MVC.Migrations
                 .PrimaryKey(t => t.FacturaId)
                 .ForeignKey("dbo.Cliente", t => t.ClienteId)
                 .Index(t => t.ClienteId);
-            
+
+            //Sql(@"Create Function dbo.GetsumDetalleFactura(@FacturaId int)
+            //            Returns Decimal(18,2)
+            //            As
+            //            Begin
+            //            Declare @facturaSum Decimal(18,2)
+            //                select @facturaSum = sum((Precio ) + ((Precio) * IVA))
+            //                from FacturaDetalle
+            //                where FacturaId = @facturaId
+            //            return IsNull(@facturaSum,0)
+            //            End
+            //            ");
+
+            //Sql(@"Alter Table dbo.Factura
+            //                    add Total as dbo.GetSumDetalleFactura(id)");
+
             CreateTable(
                 "dbo.FacturaDetalle",
                 c => new

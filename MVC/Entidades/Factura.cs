@@ -40,9 +40,8 @@ namespace MVC.Entidades
 
         [ForeignKey("ClienteId")]
         public virtual Cliente Clientes { get; set; }
-
-        [ForeignKey("AdelantoId")]
-        public IEnumerable<Adelanto> Adelantos { get; set; }
+        
+        //public IEnumerable<Adelanto> Adelantos { get; set; }
 
     }
 }

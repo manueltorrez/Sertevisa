@@ -16,26 +16,33 @@ namespace MVC.Entidades
 
         [Required(ErrorMessage = "Se requiere seleccionar el {0}")]
         [Display(Name = "Primer Nombre")]
+        [MaxLength(20)]
         public string Nombre1 { get; set; }
 
         [Display(Name = "Segundo Nombre")]
+        [MaxLength(20)]
         public string Nombre2 { get; set; }
 
         [Required(ErrorMessage = "Se requiere seleccionar el {0}")]
         [Display(Name = "Primer Apellido")]
+        [MaxLength(40)]
         public string Apellido1 { get; set; }
 
         [Display(Name = "Segundo Apellido")]
+        [MaxLength(40)]
         public string Apellido2 { get; set; }
 
         [Display(Name = "Correo")]
+        [MaxLength(60)]
         public string Correo { get; set; }
 
         [Display(Name = "Teléfono")]
-        public int Telefono { get; set; }
+        [MaxLength(10), MinLength(8)]
+        public string Telefono { get; set; }
 
         [Display(Name = "Celular")]
-        public int Celular { get; set; }
+        [MaxLength(10), MinLength(8)]
+        public string  Celular { get; set; }
 
         public virtual IEnumerable<Factura> Facturas { get; set; }
 

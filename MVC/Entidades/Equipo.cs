@@ -7,6 +7,7 @@ using System.Web;
 
 namespace MVC.Entidades
 {
+    [Table("Equipo")]
     public class Equipo
     {
         [Key]
@@ -18,7 +19,7 @@ namespace MVC.Entidades
 
         [Required(ErrorMessage = "Se requiere el {0}")]
         [Display(Name = "Modelo")]
-        [MaxLength(20)]
+        [MaxLength(25)]
         public string Modelo { get; set; }
 
         [ForeignKey("MarcaId")]

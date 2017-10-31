@@ -20,6 +20,7 @@ namespace MVC.Entidades
 
         [Required(ErrorMessage = "Se requiere la {0}")]
         [Display(Name = "Moneda")]
+        [MaxLength(4), MinLength(3)]
         public string Moneda { get; set; }
 
         [Required(ErrorMessage = "Se requiere la {0}")]

@@ -12,11 +12,11 @@ namespace MVC.Entidades
     public class Marca
     {
         [Key]
-        [ForeignKey("OrdenEntrada")]
         public int MarcaID { get; set; }
 
         [Required(ErrorMessage = "Se requiere el {0}")]
         [Display(Name = "Nombre")]
+        [MaxLength(20)]
         public string Nombre { get; set; }
 
         public virtual IEnumerable<Equipo> Equipos { get; set; }

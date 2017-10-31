@@ -28,13 +28,16 @@ namespace MVC.Entidades
 
         [Required(ErrorMessage = "Se requiere el {0} del equipo")]
         [Display(Name = "Número de Serie")]
+        [MaxLength(30)]
         public string NumeroSerie { get; set; }
 
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
         [Display(Name = "Descripción")]
+        [MaxLength(100)]
         public string Descripcion { get; set; }
 
         [Display(Name = "Descripcion Técnica")]
+        [MaxLength(150)]
         public string DescripcionTecnica { get; set; }
 
         [Required]
@@ -64,9 +67,7 @@ namespace MVC.Entidades
 
         [ForeignKey("EstadoId")]
         public virtual Estado Estado { get; set; }
-
-
-
+        
         public virtual IEnumerable<FacturaDetalle> FacturaDetalles { get; set; }
 
         public virtual IEnumerable<Adelanto> Adelantos { get; set; }
