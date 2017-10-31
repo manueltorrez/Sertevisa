@@ -18,6 +18,8 @@ namespace MVC.Entidades
         [Display(Name = "Cliente")]
         public int ClienteId { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[DisplayFormat(DataFormatString ="{0:0.###")]
         [Display(Name = "Total")]
         public decimal Total { get; set; }
 

@@ -64,6 +64,16 @@ namespace MVC.Models
 
     public class RegisterViewModel
     {
+        [Display(Name ="Nombres")]
+        [Required(ErrorMessage ="El nombre es requerido")]
+        [MinLength(3, ErrorMessage ="Mínimo {1} caracteres")]
+        [MaxLength(30, ErrorMessage = "Máximo {1} caracteres")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name ="Apellidos")]
+        public string LastName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Correo electrónico")]
