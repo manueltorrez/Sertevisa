@@ -20,7 +20,7 @@ namespace MVC.Entidades
 
         [Required(ErrorMessage = "Se requiere seleccionar el {0}")]
         [Display(Name = "Equipo")]
-        public int EquipodId { get; set; }
+        public int EquipoId { get; set; }
 
         [Required(ErrorMessage = "Se requiere el {0} del equipo")]
         [Display(Name = "Número de Serie")]
