@@ -8,21 +8,19 @@ using System.Threading.Tasks;
 
 namespace MVC.Entidades
 {
-    [Table("Estado")]
+    
     public class Estado
     {
-        Estado()
-        {
-            Activo = false;
-        }
 
-        [Key]
-        public int EstadoId { get; set; }
-
+        public int ID { get; set; }
+        //Estado()
+        //{
+        //    Activo = false;
+        //}
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
         [Display(Name = "Descripción")]
         [MaxLength(35)]
-        public string Descripción { get; set; }
+        public string Descripcion { get; set; }
 
         [Display(Name = "Activo")]
         public bool Activo { get; set; }

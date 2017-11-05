@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MVC.Entidades
 {
-    [Table("Marca")]
+    
     public class Marca
     {
-        [Key]
-        public int MarcaID { get; set; }
+        
+        public int ID { get; set; }
 
         [Required(ErrorMessage = "Se requiere el {0}")]
         [Display(Name = "Nombre")]
