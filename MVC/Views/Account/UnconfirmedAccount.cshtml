@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Cuenta sin confirmar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    Si todabia no ha recibido su correo de confiracion de cuenta en 10 minutos,
+    o lo elimino por confusión , entonces de click en este boton y le enviaremos otro.
+</p>
+
+@using (Html.BeginForm("RegenerateEmailConfirmation", "Account", FormMethod.Post,
+                            new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.Hidden("Email", (string)ViewBag.Email)
+    <input type="submit" value="Re-Send Email Confirmation" class="btn btn-primary" />
+}

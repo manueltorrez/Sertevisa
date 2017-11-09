@@ -10,12 +10,13 @@ namespace MVC.Models
     {
         public ApplicationRole()
         {
-
         }
 
-        public ApplicationRole(string name) : base(name)
+        public ApplicationRole(string name)
+           : base(name)
         {
 
         }
+
     }
 }

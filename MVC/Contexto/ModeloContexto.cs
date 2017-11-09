@@ -1,29 +1,25 @@
-﻿using MVC.Entidades;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using MVC.Entidades;
+using MVC.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MVC.Contexto
 {
-    public class ModeloContexto : DbContext
+    public class ModeloContexto : IdentityDbContext<ApplicationUser>
     {
-        public ModeloContexto() : base("DefaultConexion") { }
-
-        public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Factura> Facturas { get; set; }
-        public DbSet<Desglose> Desgloses { get; set; }
-        public DbSet<Estado> Estados { get; set; }
-        public DbSet<FacturaDetalle> FacturaDetalles { get; set; }
-        public DbSet<Marca> Marcas { get; set; }
-        public DbSet<OrdenEntrada> OrdenEntradas { get; set; }
-        public DbSet<Adelanto> Adelantos { get; set; }
+        public ModeloContexto() : base("DefaultConexion", 
+            throwIfV1Schema: false)
+        {
+            Database.SetInitializer<ModeloContexto>(null);
+        }        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            base.OnModelCreating(modelBuilder);
+
             #region EntityConfiguration
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
@@ -66,6 +62,23 @@ namespace MVC.Contexto
             return base.SaveChanges();
         }
 
+        public static ModeloContexto Create()
+        {
+            return new ModeloContexto();
+        }
 
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Factura> Facturas { get; set; }
+        public DbSet<Desglose> Desgloses { get; set; }
+        public DbSet<Estado> Estados { get; set; }
+        public DbSet<FacturaDetalle> FacturaDetalles { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
+        public DbSet<OrdenEntrada> OrdenEntradas { get; set; }
+        public DbSet<Adelanto> Adelantos { get; set; }
+
+        public System.Data.Entity.DbSet<MVC.Models.ApplicationRole> IdentityRoles { get; set; }
+
+        public System.Data.Entity.DbSet<MVC.Models.ApplicationUser> Application
+        { get; set; }
     }
 }

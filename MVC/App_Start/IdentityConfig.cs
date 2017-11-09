@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using MVC.Contexto;
+using System.Net.Mail;
 using MVC.Models;
 
 namespace MVC
@@ -18,7 +20,45 @@ namespace MVC
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Conecte su servicio de correo electrónico aquí para enviar correo electrónico.
+            // Plug in your email service here to send an email.
+            MailMessage mmsg = new MailMessage();
+
+            //Direccion de correo electronico a la que queremos enviar el mensaje
+            mmsg.To.Add(message.Destination);
+
+            //Nota: La propiedad To es una colección que permite enviar el mensaje a más de un destinatario
+
+            //Asunto
+            mmsg.Subject = "Confirmación de Cuenta, de sistema 'Sertevisa' ";
+            mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
+
+            //Direccion de correo electronico que queremos que reciba una copia del mensaje
+            //mmsg.Bcc.Add("cursounimvc@gmail.com"); //Opcional
+
+            //Cuerpo del Mensaje
+            mmsg.Body = message.Body;
+            mmsg.BodyEncoding = System.Text.Encoding.UTF8;
+            mmsg.IsBodyHtml = true; //Si no queremos que se envíe como HTML
+
+            //Correo electronico desde la que enviamos el mensaje
+            mmsg.From = new System.Net.Mail.MailAddress("sertevisamain@gmail.com");
+
+
+            /*-------------------------CLIENTE DE CORREO----------------------*/
+            //Creamos un objeto de cliente de correo
+            SmtpClient cliente = new SmtpClient();
+
+            //Hay que crear las credenciales del correo emisor
+            cliente.Credentials = new System.Net.NetworkCredential("sertevisamain@gmail.com", "SistemasDistribuidos1");
+
+            //Lo siguiente es obligatorio si enviamos el mensaje desde Gmail
+            cliente.Port = 587;
+            cliente.EnableSsl = true;
+            cliente.Host = "smtp.gmail.com";
+
+
+            /*-------------------------ENVIO DE CORREO----------------------*/
+            cliente.Send(mmsg);
             return Task.FromResult(0);
         }
     }
@@ -40,9 +80,9 @@ namespace MVC
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<SecurityContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ModeloContexto>()));
             // Configure la lógica de validación de nombres de usuario
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
@@ -81,7 +121,7 @@ namespace MVC
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
@@ -105,5 +145,23 @@ namespace MVC
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
+    }
+
+    //Configure el Role Manager usado en la aplicacion. RoleManager es definido en ASP.NET Identity Configuration
+    public class ApplicationRoleManager : RoleManager<ApplicationRole>
+    {
+        public ApplicationRoleManager(IRoleStore<ApplicationRole, string> roleStore)
+           : base(roleStore)
+        {
+
+        }
+
+
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            return new ApplicationRoleManager(new RoleStore<ApplicationRole>(context.Get<ModeloContexto>()));
+        }
+
+
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using MVC.Models;
+using MVC.Contexto;
 
 namespace MVC
 {
@@ -15,10 +16,10 @@ namespace MVC
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure el contexto de base de datos, el administrador de usuarios y el administrador de inicios de sesión para usar una única instancia por solicitud
-            app.CreatePerOwinContext(SecurityContext.Create);
+            app.CreatePerOwinContext(ModeloContexto.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-            //app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
             // Permitir que la aplicación use una cookie para almacenar información para el usuario que inicia sesión
             // y una cookie para almacenar temporalmente información sobre un usuario que inicia sesión con un proveedor de inicio de sesión de terceros
@@ -59,11 +60,11 @@ namespace MVC
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1034753489879-m9mukt5if179lg9bj0kdd3vesgov15mc.apps.googleusercontent.com ",
+                ClientSecret = "7lF16Jn51PS8rlXD6AoX7Kqt "
+            });
         }
     }
 }
