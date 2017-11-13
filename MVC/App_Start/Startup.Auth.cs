@@ -62,8 +62,8 @@ namespace MVC
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "1034753489879-m9mukt5if179lg9bj0kdd3vesgov15mc.apps.googleusercontent.com ",
-                ClientSecret = "7lF16Jn51PS8rlXD6AoX7Kqt "
+                ClientId = "1034753489879-m9mukt5if179lg9bj0kdd3vesgov15mc.apps.googleusercontent.com",
+                ClientSecret = "7lF16Jn51PS8rlXD6AoX7Kqt"
             });
         }
     }

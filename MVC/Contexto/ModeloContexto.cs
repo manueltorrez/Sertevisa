@@ -76,9 +76,8 @@ namespace MVC.Contexto
         public DbSet<OrdenEntrada> OrdenEntradas { get; set; }
         public DbSet<Adelanto> Adelantos { get; set; }
 
-        public System.Data.Entity.DbSet<MVC.Models.ApplicationRole> IdentityRoles { get; set; }
+        //public DbSet<ApplicationRole> IdentityRoles { get; set; }
 
-        public System.Data.Entity.DbSet<MVC.Models.ApplicationUser> Application
-        { get; set; }
+        //public DbSet<ApplicationUser> Application { get; set; }
     }
 }
