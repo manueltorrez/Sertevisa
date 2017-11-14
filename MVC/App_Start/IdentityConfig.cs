@@ -41,7 +41,7 @@ namespace MVC
             mmsg.IsBodyHtml = true; //Si no queremos que se envíe como HTML
 
             //Correo electronico desde la que enviamos el mensaje
-            mmsg.From = new System.Net.Mail.MailAddress("cursounimvc@gmail.com");
+            mmsg.From = new System.Net.Mail.MailAddress("sertevisamain@gmail.com");
 
 
             /*-------------------------CLIENTE DE CORREO----------------------*/
@@ -49,9 +49,9 @@ namespace MVC
             SmtpClient cliente = new SmtpClient();
 
             //Hay que crear las credenciales del correo emisor
-            //cliente.Credentials = new System.Net.NetworkCredential("sertevisamain@gmail.com", "SistemasDistribuidos1");
+            cliente.Credentials = new System.Net.NetworkCredential("sertevisamain@gmail.com", "SistemasDistribuidos1");
             
-            cliente.Credentials = new System.Net.NetworkCredential("cursounimvc@gmail.com", "Uni.2015");
+            
 
             //Lo siguiente es obligatorio si enviamos el mensaje desde Gmail
             cliente.Port = 587;

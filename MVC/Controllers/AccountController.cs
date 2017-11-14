@@ -262,7 +262,7 @@ namespace MVC.Controllers
             catch (InvalidOperationException)
             {
 
-                return View("Ërror");
+                return View("Error");
             }
         }
 
