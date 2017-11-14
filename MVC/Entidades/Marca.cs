@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MVC.Entidades
 {
-    
+    [Table("Marcas")]
     public class Marca
     {
         

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC.Contexto;
 using MVC.Entidades;
+using PagedList;
 
 namespace MVC.Controllers
 {
@@ -16,9 +17,45 @@ namespace MVC.Controllers
         private ModeloContexto db = new ModeloContexto();
 
         // GET: Marcas
-        public ActionResult Index()
+        public ActionResult Index(string sort,string currentFilter, string search, int? page)
         {
-            return View(db.Marcas.ToList());
+            ViewBag.CurrentSort = sort;
+            ViewBag.MarcaSort = String.IsNullOrEmpty(sort) ? "Marca" : "";
+            
+
+            IQueryable<Marca> Marcas = db.Marcas;
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+            ViewBag.currentFilter = search;
+
+            var marcas = from m in db.Marcas select m;
+            if (!String.IsNullOrEmpty(search))
+            {
+                marcas = marcas.Where(m => m.Nombre.Contains(search));
+            }
+            switch (sort)
+            {
+                case "Nombre":
+                    marcas = marcas.OrderByDescending(ii => ii.Nombre);
+                    break;
+
+                default:
+                    marcas = marcas.OrderBy(ii => ii.Nombre);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = page ?? 1;
+
+            // retornamos la vista ya filtrada con los campos respectivos
+            //con un tamaño de 5 registros por pagina
+            return View(marcas.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Marcas/Details/5
