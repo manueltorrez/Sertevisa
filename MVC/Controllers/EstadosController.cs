@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC.Contexto;
 using MVC.Entidades;
+using PagedList;
 
 namespace MVC.Controllers
 {
@@ -15,11 +16,53 @@ namespace MVC.Controllers
     {
         private ModeloContexto db = new ModeloContexto();
 
-        // GET: Estados
-        public ActionResult Index()
+        public ActionResult Index(string sort, string search, int? page)
         {
-            return View(db.Estados.ToList());
+            ViewBag.EstadoSort = sort == "Estados" ? "descripcion" : "Estados";
+            
+            ViewBag.CurrentSort = sort;
+            ViewBag.CurrentSearch = search;
+
+            //Lo utilizamos para evaluar la carga de datos de marcas
+            // solo seselecionan los que no se han eliminado
+            IQueryable<Estado> foundEstados= db.Estados.Where(p => p.Activo == false);
+
+            //Si el campo de busqueda no esta vacio validamos que la cadena de busqueda se encuentre entre las columnas 
+            // de categoria que queramos en este caso solo nombre.
+            //y si se encuentra se seleccionan las filas y las columnas que contengan la cadena y asi cambia el Viewbag
+            if (!string.IsNullOrEmpty(search))
+            {
+                foundEstados = foundEstados.Where(ma => ma.Descripcion.Contains(search));
+            }
+
+
+            //Utilizamos un switch para las columnas que queramos ordenar
+            // en este caso decimos que al selecionar la columna nombre se
+            //mostraram sus registros en orden desendente
+            switch (sort)
+            {
+                case "descripcion":
+                    foundEstados = foundEstados.OrderByDescending(ti => ti.Descripcion);
+                    break;
+
+                default:
+                    foundEstados = foundEstados.OrderBy(ti => ti.Descripcion);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = page ?? 1;
+
+            // retornamos la vista ya filtrada con los campos respectivos
+            //con un tamaño de 5 registros por pagina
+            return View(foundEstados.ToPagedList(pageNumber, pageSize));
         }
+
+        // GET: Estados
+        //public ActionResult Index()
+        //{
+        //    return View(db.Estados.ToList());
+        //}
 
         // GET: Estados/Details/5
         public ActionResult Details(int? id)
