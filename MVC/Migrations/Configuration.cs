@@ -34,22 +34,25 @@ namespace MVC.Migrations
 
             context.Marcas.AddOrUpdate(
                   p => p.Nombre,
-                  new Marca { Nombre = "Sony" },
-                  new Marca { Nombre = "Samsung" },
-                  new Marca { Nombre = "LG" },
-                  new Marca { Nombre = "Dell" },
-                  new Marca { Nombre = "Toshiba" },
-                  new Marca { Nombre = "LG" },
-                  new Marca { Nombre = "Huawei" }
+                  new Marca { Nombre = "Sony", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Marca { Nombre = "Samsung", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Marca { Nombre = "LG", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Marca { Nombre = "Dell", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Marca { Nombre = "Asus", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Marca { Nombre = "HP", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Marca { Nombre = "Toshiba", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Marca { Nombre = "Huawei", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now }
                 );
 
             context.Estados.AddOrUpdate(
                   p => p.Descripcion,
-                  new Estado { Descripcion = "Devolución" },
-                  new Estado { Descripcion = "Sin revisar" },
-                  new Estado { Descripcion = "Propiedad de Sertevisa" },
-                  new Estado { Descripcion = "Reparado - No entregado" },
-                  new Estado { Descripcion = "Reparado - Entregado" }
+                  new Estado { Descripcion = "Devolución", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Estado { Descripcion = "Sin revisar", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Estado { Descripcion = "Esperando respuesta cliente", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Estado { Descripcion = "Esperando repuesto", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Estado { Descripcion = "Propiedad de Sertevisa", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now },
+                  new Estado { Descripcion = "Reparado - No entregado", DateCreation=System.DateTime.Now, DateModification= System.DateTime.Now },
+                  new Estado { Descripcion = "Reparado - Entregado", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now }
                 );
 
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ModeloContexto()));

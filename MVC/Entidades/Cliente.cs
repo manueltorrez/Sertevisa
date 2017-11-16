@@ -44,10 +44,22 @@ namespace MVC.Entidades
         [MaxLength(10), MinLength(8)]
         public string  Celular { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateCreation { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateModification { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Timestamp]
+        public byte[] Control { get; set; }
+
         public virtual IEnumerable<Factura> Facturas { get; set; }
 
-        public virtual IEnumerable<OrdenEntrada> OrdenEntradas { get; set; }
-
-        public byte Control { get; set; }
+        public virtual IEnumerable<OrdenEntrada> OrdenEntradas { get; set; }        
     }
 }

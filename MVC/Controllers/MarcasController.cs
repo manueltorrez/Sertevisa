@@ -84,7 +84,7 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nombre")] Marca marca)
+        public ActionResult Create([Bind(Include = "ID,Nombre, Control")] Marca marca)
         {
             if (ModelState.IsValid)
             {

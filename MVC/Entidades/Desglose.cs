@@ -31,10 +31,22 @@ namespace MVC.Entidades
         [Display(Name = "Tasa de Cambio")]
         public int TasaCambio { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateCreation { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateModification { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Timestamp]
+        public byte[] Control { get; set; }
+
         [ForeignKey("FacturaId")]
         public virtual Factura Facturas { get; set; }
-
-        public byte Control { get; set; }
 
     }
 }

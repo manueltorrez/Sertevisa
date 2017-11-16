@@ -67,11 +67,13 @@ namespace MVC.Entidades
 
         [ForeignKey("EstadoId")]
         public virtual Estado Estado { get; set; }
-        
+
+        [ScaffoldColumn(false)]
+        [Timestamp]
+        public byte[] Control { get; set; }
+
         public virtual IEnumerable<FacturaDetalle> FacturaDetalles { get; set; }
 
         public virtual IEnumerable<Adelanto> Adelantos { get; set; }
-
-        public byte Control { get; set; }
     }
 }

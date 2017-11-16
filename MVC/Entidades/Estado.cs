@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MVC.Entidades
 {
-    
+    [Table("Estado")]
     public class Estado
     {
 
@@ -17,6 +17,7 @@ namespace MVC.Entidades
         //{
         //    Activo = false;
         //}
+        [Index("Index_Estado_Descripcion", IsUnique = true)]
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
         [Display(Name = "Descripción")]
         [MaxLength(35)]
@@ -25,7 +26,19 @@ namespace MVC.Entidades
         [Display(Name = "Activo")]
         public bool Activo { get; set; }
 
-        public byte Control { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateCreation { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateModification { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Timestamp]
+        public byte[] Control { get; set; }
 
         public virtual IEnumerable<OrdenEntrada> OrdenEntrada { get; set; }
     }

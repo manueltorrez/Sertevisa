@@ -75,9 +75,5 @@ namespace MVC.Contexto
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<OrdenEntrada> OrdenEntradas { get; set; }
         public DbSet<Adelanto> Adelantos { get; set; }
-
-        //public DbSet<ApplicationRole> IdentityRoles { get; set; }
-
-        //public DbSet<ApplicationUser> Application { get; set; }
     }
 }

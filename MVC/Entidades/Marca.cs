@@ -14,12 +14,25 @@ namespace MVC.Entidades
         
         public int ID { get; set; }
 
+        [Index("Index_Marca_Nombre", IsUnique =true)]
         [Required(ErrorMessage = "Se requiere el {0}")]
         [Display(Name = "Nombre")]
         [MaxLength(20)]
         public string Nombre { get; set; }
 
-        public byte Control { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateCreation { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateModification { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Timestamp]
+        public byte[] Control { get; set; }
 
         public virtual IEnumerable<Equipo> Equipos { get; set; }
     }

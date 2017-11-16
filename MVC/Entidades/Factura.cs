@@ -43,7 +43,9 @@ namespace MVC.Entidades
         [ForeignKey("ClienteId")]
         public virtual Cliente Clientes { get; set; }
 
-        public byte Control { get; set; }
+        [ScaffoldColumn(false)]
+        [Timestamp]
+        public byte[] Control { get; set; }
 
         //public IEnumerable<Adelanto> Adelantos { get; set; }
 

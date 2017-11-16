@@ -25,8 +25,20 @@ namespace MVC.Entidades
         [ForeignKey("MarcaId")]
         public virtual Marca Marcas { get; set; }
 
-        public virtual IEnumerable<OrdenEntrada> OrdenEntradas { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateCreation { get; set; }
 
-        public byte Control { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [ScaffoldColumn(false)]
+        public DateTime DateModification { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Timestamp]
+        public byte[] Control { get; set; }
+
+        public virtual IEnumerable<OrdenEntrada> OrdenEntradas { get; set; }
     }
 }
