@@ -26,5 +26,7 @@ namespace MVC.Entidades
         public virtual Marca Marcas { get; set; }
 
         public virtual IEnumerable<OrdenEntrada> OrdenEntradas { get; set; }
+
+        public byte Control { get; set; }
     }
 }

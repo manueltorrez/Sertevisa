@@ -34,5 +34,7 @@ namespace MVC.Entidades
         [ForeignKey("FacturaId")]
         public virtual Factura Facturas { get; set; }
 
+        public byte Control { get; set; }
+
     }
 }

@@ -19,6 +19,8 @@ namespace MVC.Entidades
         [MaxLength(20)]
         public string Nombre { get; set; }
 
+        public byte Control { get; set; }
+
         public virtual IEnumerable<Equipo> Equipos { get; set; }
     }
 }

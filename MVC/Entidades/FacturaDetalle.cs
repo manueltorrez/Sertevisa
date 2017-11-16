@@ -36,5 +36,7 @@ namespace MVC.Entidades
 
         [ForeignKey("OrdenEntradaId")]
         public virtual OrdenEntrada OrdenEntradas { get; set; }
+
+        public byte Control { get; set; }
     }
 }

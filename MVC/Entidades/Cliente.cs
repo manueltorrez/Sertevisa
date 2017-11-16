@@ -47,5 +47,7 @@ namespace MVC.Entidades
         public virtual IEnumerable<Factura> Facturas { get; set; }
 
         public virtual IEnumerable<OrdenEntrada> OrdenEntradas { get; set; }
+
+        public byte Control { get; set; }
     }
 }
