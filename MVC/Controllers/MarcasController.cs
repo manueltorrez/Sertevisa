@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MVC.Contexto;
 using MVC.Entidades;
 using PagedList;
+using System.Data.SqlClient;
 
 namespace MVC.Controllers
 {
@@ -84,14 +85,32 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nombre, Control")] Marca marca)
+        public ActionResult Create([Bind(Include = "Nombre")] Marca marca)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Marcas.Add(marca);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Marcas.Add(marca);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (Exception ex)
+            {
+                var e = ex.GetBaseException() as SqlException;
+                if (e != null)
+                    switch (e.Number)
+                    {
+                        case 2601:
+                            TempData["MsgErrorClassAgrups"] = "El registro ya existe.";
+                            break;
+                        default:
+                            TempData["MsgErrorClassAgrups"] = "Error al guardar el registro.";
+                            break;
+                    }
+            } 
+            
 
             return View(marca);
         }
@@ -124,6 +143,8 @@ namespace MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+
             return View(marca);
         }
 

@@ -82,6 +82,7 @@ namespace MVC.Controllers
         // GET: Estados/Create
         public ActionResult Create()
         {
+           // public new Estado Estados= Estado();
             return View();
         }
 

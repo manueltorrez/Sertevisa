@@ -12,11 +12,13 @@ namespace MVC.Entidades
     public class Estado
     {
 
-        public int ID { get; set; }
         //Estado()
         //{
-        //    Activo = false;
+        //    Activo = true;
         //}
+
+        public int ID { get; set; }
+        
         [Index("Index_Estado_Descripcion", IsUnique = true)]
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
         [Display(Name = "Descripción")]
