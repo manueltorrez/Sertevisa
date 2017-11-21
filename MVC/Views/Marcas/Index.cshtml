@@ -4,6 +4,8 @@
 @{
     ViewBag.Title = "Marca";
 }
+
+<h2>Marcas</h2>
 <p>
     @Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-default" })
 </p>
@@ -12,8 +14,6 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-
-                <h5>@ViewBag.Title</h5>
 
                 <div class="ibox-tools">
                     <a class="collapse-link">
@@ -80,15 +80,14 @@
                 @* Codigo para la paginacion*@
 
                 Pagina @(Model.PageCount < Model.PageNumber ? 0
-        : Model.PageNumber) de @Model.PageCount
+                        : Model.PageNumber) de @Model.PageCount
 
-        @Html.PagedListPager(Model, Page =>
-  Url.Action("Index", new
-  {
-      sort = ViewBag.CurrentSort,
-      search = ViewBag.CurrentSearch,
-      Page
-  }))
+                @Html.PagedListPager(Model, Page =>
+                Url.Action("Index", new{
+                    sort = ViewBag.CurrentSort,
+                    search = ViewBag.CurrentSearch,
+                    Page
+                }))
 
             </div>
         </div>

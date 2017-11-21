@@ -1,0 +1,50 @@
+﻿@model MVC.Entidades.FacturaDetalle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FacturaDetalle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Facturas.FacturaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Facturas.FacturaId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrdenEntradas.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrdenEntradas.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FacturaDetalleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

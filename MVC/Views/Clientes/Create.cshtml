@@ -7,14 +7,18 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
-{
+@using (Html.BeginForm())
+{ 
+
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         <h4>Cliente</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.DateCreation, new { @Value = @DateTime.Now.ToShortDateString() })
+        @Html.HiddenFor(model => model.DateModification, new { @Value = @DateTime.Now.ToShortDateString() })
+
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre1, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
