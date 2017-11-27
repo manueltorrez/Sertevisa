@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC.Contexto;
 using MVC.Entidades;
+using PagedList;
 
 namespace MVC.Controllers
 {
@@ -16,9 +17,45 @@ namespace MVC.Controllers
         private ModeloContexto db = new ModeloContexto();
 
         // GET: Clientes
-        public ActionResult Index()
+        public ActionResult Index(string sort, string currentFilter, string search, int? page)
         {
-            return View(db.Clientes.ToList());
+            ViewBag.CurrentSort = sort;
+            ViewBag.MarcaSort = String.IsNullOrEmpty(sort) ? "Marca" : "";
+
+
+            IQueryable<Cliente> Clientes = db.Clientes;
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+            ViewBag.currentFilter = search;
+
+            var clientes = from m in db.Clientes select m;
+            if (!String.IsNullOrEmpty(search))
+            {
+                clientes = clientes.Where(m => m.Nombre1.Contains(search));
+            }
+            switch (sort)
+            {
+                case "Nombre":
+                    clientes = clientes.OrderByDescending(ii => ii.Nombre1);
+                    break;
+
+                default:
+                    clientes = clientes.OrderBy(ii => ii.Nombre1);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = page ?? 1;
+
+            // retornamos la vista ya filtrada con los campos respectivos
+            //con un tamaño de 5 registros por pagina
+            return View(clientes.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Clientes/Details/5
@@ -47,7 +84,7 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClienteId,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Celular")] Cliente cliente)
+        public ActionResult Create([Bind(Include = "ClienteId,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Celular, DateCreation, DateModification, Control")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +116,7 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClienteId,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Celular")] Cliente cliente)
+        public ActionResult Edit([Bind(Include = "ClienteId,Nombre1,Nombre2,Apellido1,Apellido2,Correo,Telefono,Celular, DateCreation, DateModification, Control")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {

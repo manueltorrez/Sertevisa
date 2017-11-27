@@ -7,14 +7,26 @@
 <h2>Crear</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
+    <div class="alert-dismissible @ViewBag.ClassDanger" style="@(ViewBag.ClassDanger == null ? "display:none" : "")">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div class="">
+            @Html.ValidationSummary("")
+            @TempData["MsgErrorClassAgrups"]
+        </div>
+    </div>
+
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         <h4>Marca</h4>
-        <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.DateCreation, new { @Value = @DateTime.Now.ToShortDateString() })
+        @Html.HiddenFor(model => model.DateModification, new { @Value = @DateTime.Now.ToShortDateString() })
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -34,5 +46,11 @@
 <div>
     @Html.ActionLink("Regresar al listado", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
 
 

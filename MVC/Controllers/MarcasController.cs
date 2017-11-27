@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MVC.Contexto;
 using MVC.Entidades;
 using PagedList;
+using System.Data.SqlClient;
 
 namespace MVC.Controllers
 {
@@ -84,15 +85,33 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nombre, Control")] Marca marca)
+        public ActionResult Create([Bind(Include = "Nombre, DateCreation, DateModification, Control")] Marca marca)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Marcas.Add(marca);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Marcas.Add(marca);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                var e = ex.GetBaseException() as SqlException;
+                if (e != null)
+                    switch (e.Number)
+                    {
+                        case 2601:
+                            TempData["MsgErrorClassAgrups"] = "El registro ya existe.";
+                            break;
+                        default:
+                            TempData["MsgErrorClassAgrups"] = "Error al guardar el registro.";
+                            break;
+                    }
             }
 
+            ViewBag.ClassDanger = "alert alert-danger";
             return View(marca);
         }
 
@@ -116,14 +135,38 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nombre")] Marca marca)
+        public ActionResult Edit([Bind(Include = "ID,Nombre, DateCreation, DateModification, Control")] Marca marca)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(marca).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (ModelState.IsValid)
+                {
+                    db.Entry(marca).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (Exception ex)
+            {
+                var e = ex.GetBaseException() as SqlException;
+                if (e != null)
+                    switch (e.Number)
+                    {
+                        case 2601:
+                            TempData["MsgErrorClassAgrups"] = "El registro ya existe.";
+                            break;
+
+                        default:
+                            TempData["MsgErrorClassAgrups"] = "Error al guardar registro.";
+                            break;
+                    }
+                else
+                {
+                    TempData["MsgErrorClassAgrups"] = "El registro ya fue modificado, contactar a su administrador de sistema si el problema persiste.";
+                }
+            }
+            ViewBag.ClassDanger = "alert alert-danger";
             return View(marca);
         }
 

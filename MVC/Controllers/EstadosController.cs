@@ -90,7 +90,7 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Descripcion,Activo")] Estado estado)
+        public ActionResult Create([Bind(Include = "Descripcion, Activo, DateCreation, DateModification, Control")] Estado estado)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +122,7 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Descripcion,Activo")] Estado estado)
+        public ActionResult Edit([Bind(Include = "ID,Descripcion,Activo, DateCreation, DateModification, Control")] Estado estado)
         {
             if (ModelState.IsValid)
             {
