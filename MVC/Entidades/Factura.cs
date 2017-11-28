@@ -26,6 +26,16 @@ namespace MVC.Entidades
         [Display(Name = "Número")]
         public int Numero { get; set; }
 
+        //Campos de control
+        [Display(Name = "Activo")]
+        public bool Active { get; set; }
+
+        [Required(ErrorMessage = "La {0} es un campo requerido")]
+        [DataType(DataType.Date)]
+        [Display(Name = "FECHA")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Fecha { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [ScaffoldColumn(false)]

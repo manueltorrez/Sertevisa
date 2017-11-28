@@ -18,14 +18,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.Facturas.FacturaId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrdenEntradas.NumeroSerie)
-            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.OrdenEntradas.EquipoId)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subtotal)
             </th>
             <th></th>
         </tr>
@@ -40,14 +43,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Facturas.FacturaId)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.OrdenEntradas.NumeroSerie)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subtotal)
                 </td>
                 <td></td>
             </tr>

@@ -20,6 +20,10 @@ namespace MVC.Entidades
         [MaxLength(20)]
         public string Nombre { get; set; }
 
+        //Campos de control
+        [Display(Name = "Activo")]
+        public bool Active { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [ScaffoldColumn(false)]

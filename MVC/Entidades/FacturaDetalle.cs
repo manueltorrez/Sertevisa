@@ -31,6 +31,14 @@ namespace MVC.Entidades
         [Display(Name = "Precio")]
         public decimal Precio { get; set; }
 
+        public decimal Subtotal { get; set; }
+
+        public decimal Cantidad { get; set; }
+
+        //Campos de control
+        [Display(Name = "Activo")]
+        public bool Active { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [ScaffoldColumn(false)]

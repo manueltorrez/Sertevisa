@@ -54,7 +54,8 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FacturaDetalleId,FacturaId,OrdenEntradaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
+        //public ActionResult Create([Bind(Include = "FacturaDetalleId,FacturaId,OrdenEntradaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
+        public ActionResult Create([Bind(Include = "FacturaDetalleId,FacturaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +65,7 @@ namespace MVC.Controllers
             }
 
             ViewBag.FacturaId = new SelectList(db.Facturas, "FacturaId", "FacturaId", facturaDetalle.FacturaId);
-            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
+            //ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
             return View(facturaDetalle);
         }
 
@@ -81,7 +82,7 @@ namespace MVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.FacturaId = new SelectList(db.Facturas, "FacturaId", "FacturaId", facturaDetalle.FacturaId);
-            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
+            //ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
             return View(facturaDetalle);
         }
 
@@ -90,7 +91,8 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FacturaDetalleId,FacturaId,OrdenEntradaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
+        //public ActionResult Edit([Bind(Include = "FacturaDetalleId,FacturaId,OrdenEntradaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
+        public ActionResult Edit([Bind(Include = "FacturaDetalleId,FacturaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +101,7 @@ namespace MVC.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.FacturaId = new SelectList(db.Facturas, "FacturaId", "FacturaId", facturaDetalle.FacturaId);
-            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
+            //ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
             return View(facturaDetalle);
         }
 

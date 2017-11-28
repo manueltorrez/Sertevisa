@@ -89,6 +89,7 @@ namespace MVC.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Nombre = c.String(nullable: false, maxLength: 20, unicode: false),
+                        Active = c.Boolean(nullable: false),
                         DateCreation = c.DateTime(nullable: false),
                         DateModification = c.DateTime(nullable: false),
                         Control = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
@@ -133,7 +134,9 @@ namespace MVC.Migrations
                     {
                         FacturaId = c.Int(nullable: false, identity: true),
                         ClienteId = c.Int(nullable: false),
-                        Total = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        //Total = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Fecha = c.DateTime(nullable: false),
+                        Active = c.Boolean(nullable: false),
                         Numero = c.Int(nullable: false),
                         DateCreation = c.DateTime(nullable: false),
                         DateModification = c.DateTime(nullable: false),
@@ -142,7 +145,24 @@ namespace MVC.Migrations
                 .PrimaryKey(t => t.FacturaId)
                 .ForeignKey("dbo.Cliente", t => t.ClienteId)
                 .Index(t => t.ClienteId);
-            
+
+            Sql(@"Create FUNCTION dbo.GetSumDetalleFactura(@facturaId INT)
+                   Returns Decimal(18,2)
+                AS
+                Begin
+                
+                DECLARE @facturaSum Decimal(18,2)
+                
+                select @facturaSum = sum((PrecioVenta * Cantidad))
+                from DetalleFacturas
+                where FacturaId = @facturaId
+                and Active = 1
+
+                return ISNULL(@facturaSum,0)
+                END
+                ");
+
+
             CreateTable(
                 "dbo.FacturaDetalle",
                 c => new
@@ -152,6 +172,9 @@ namespace MVC.Migrations
                         OrdenEntradaId = c.Int(nullable: false),
                         Descripcion = c.String(nullable: false, maxLength: 70, unicode: false),
                         Precio = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Cantidad = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Subtotal = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Active = c.Boolean(nullable: false),
                         DateCreation = c.DateTime(nullable: false),
                         DateModification = c.DateTime(nullable: false),
                         Control = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
