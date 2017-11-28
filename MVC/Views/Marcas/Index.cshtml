@@ -68,6 +68,9 @@
                                         @Html.DisplayFor(modelItem => item.Nombre)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.Activo)
+                                    </td>
+                                    <td>
                                         @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-rounded" })
                                         @Html.ActionLink("Detalle", "Details", new { id = item.ID }, new { @class = "btn btn-success btn-rounded" })
                                         @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })

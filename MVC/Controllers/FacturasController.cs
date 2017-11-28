@@ -49,7 +49,7 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FacturaId,ClienteId,Fecha,Total,Numero,DateCreation,DateModification,Control")] Factura factura)
+        public ActionResult Create([Bind(Include = "FacturaId,ClienteId,Fecha,Numero,DateCreation,DateModification,Control")] Factura factura)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace MVC.Controllers
             }
 
             ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nombre1", factura.ClienteId);
-            return View(factura);
+            return RedirectToAction("Edit", new { controller = "Facturas", action = "Edit", Id = factura.FacturaId });
         }
 
         // GET: Facturas/Edit/5

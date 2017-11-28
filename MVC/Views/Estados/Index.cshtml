@@ -66,8 +66,10 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Descripcion
-                                   )
+                                        @Html.DisplayFor(modelItem => item.Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Activo)
                                     </td>
                                     <td>
                                         @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-rounded" })

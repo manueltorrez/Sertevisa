@@ -22,7 +22,7 @@ namespace MVC.Entidades
 
         //Campos de control
         [Display(Name = "Activo")]
-        public bool Active { get; set; }
+        public bool Activo { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

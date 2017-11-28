@@ -14,7 +14,7 @@ namespace MVC.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MVC.Contexto.ModeloContexto context)
@@ -34,14 +34,14 @@ namespace MVC.Migrations
 
             context.Marcas.AddOrUpdate(
                   p => p.Nombre,
-                  new Marca { Nombre = "Sony", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active = true },
-                  new Marca { Nombre = "Samsung", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active = true },
-                  new Marca { Nombre = "LG", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active = true },
-                  new Marca { Nombre = "Dell", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active = true },
-                  new Marca { Nombre = "Asus", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active = true },
-                  new Marca { Nombre = "HP", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active = true },
-                  new Marca { Nombre = "Toshiba", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active = true },
-                  new Marca { Nombre = "Huawei", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Active=true }
+                  new Marca { Nombre = "Sony", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true },
+                  new Marca { Nombre = "Samsung", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true },
+                  new Marca { Nombre = "LG", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true },
+                  new Marca { Nombre = "Dell", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true },
+                  new Marca { Nombre = "Asus", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true },
+                  new Marca { Nombre = "HP", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true },
+                  new Marca { Nombre = "Toshiba", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true },
+                  new Marca { Nombre = "Huawei", DateCreation = System.DateTime.Now, DateModification = System.DateTime.Now, Activo = true }
                 );
 
             context.Estados.AddOrUpdate(

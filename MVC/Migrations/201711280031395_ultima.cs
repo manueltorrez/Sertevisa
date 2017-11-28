@@ -89,7 +89,7 @@ namespace MVC.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Nombre = c.String(nullable: false, maxLength: 20, unicode: false),
-                        Active = c.Boolean(nullable: false),
+                        Activo = c.Boolean(nullable: false),
                         DateCreation = c.DateTime(nullable: false),
                         DateModification = c.DateTime(nullable: false),
                         Control = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
@@ -161,7 +161,10 @@ namespace MVC.Migrations
                 return ISNULL(@facturaSum,0)
                 END
                 ");
-
+            Sql(@"
+                ALTER TABLE dbo.Factura add Total AS 
+                dbo.GetSumDetalleFactura(FacturaId)
+                ");
 
             CreateTable(
                 "dbo.FacturaDetalle",
