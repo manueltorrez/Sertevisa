@@ -20,6 +20,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Modelo)
         </dt>
 
@@ -34,7 +42,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar al listado", "Index")
+            @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>

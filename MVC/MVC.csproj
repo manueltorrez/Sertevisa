@@ -224,6 +224,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711280031395_ultima.cs" />
+    <Compile Include="Migrations\201711280031395_ultima.Designer.cs">
+      <DependentUpon>201711280031395_ultima.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -525,11 +529,6 @@
     <Content Include="Views\FacturaDetalles\Details.cshtml" />
     <Content Include="Views\FacturaDetalles\Edit.cshtml" />
     <Content Include="Views\FacturaDetalles\_Index.cshtml" />
-    <Content Include="Views\Equipos\Create.cshtml" />
-    <Content Include="Views\Equipos\Delete.cshtml" />
-    <Content Include="Views\Equipos\Details.cshtml" />
-    <Content Include="Views\Equipos\Edit.cshtml" />
-    <Content Include="Views\Equipos\Index.cshtml" />
     <Content Include="Views\Adelantos\Create.cshtml" />
     <Content Include="Views\Adelantos\Delete.cshtml" />
     <Content Include="Views\Adelantos\Details.cshtml" />
@@ -540,6 +539,11 @@
     <Content Include="Views\OrdenEntradas\Details.cshtml" />
     <Content Include="Views\OrdenEntradas\Edit.cshtml" />
     <Content Include="Views\OrdenEntradas\Index.cshtml" />
+    <Content Include="Views\Equipos\Create.cshtml" />
+    <Content Include="Views\Equipos\Delete.cshtml" />
+    <Content Include="Views\Equipos\Details.cshtml" />
+    <Content Include="Views\Equipos\Edit.cshtml" />
+    <Content Include="Views\Equipos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -551,6 +555,11 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711280031395_ultima.resx">
+      <DependentUpon>201711280031395_ultima.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

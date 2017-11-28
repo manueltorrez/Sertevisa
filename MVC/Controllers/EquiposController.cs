@@ -49,7 +49,7 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EquipoId,MarcaId,Modelo,DateCreation,DateModification,Control")] Equipo equipo)
+        public ActionResult Create([Bind(Include = "EquipoId,MarcaId,Nombre,Modelo,DateCreation,DateModification,Control")] Equipo equipo)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EquipoId,MarcaId,Modelo,DateCreation,DateModification,Control")] Equipo equipo)
+        public ActionResult Edit([Bind(Include = "EquipoId,MarcaId,Nombre,Modelo,DateCreation,DateModification,Control")] Equipo equipo)
         {
             if (ModelState.IsValid)
             {

@@ -17,6 +17,10 @@ namespace MVC.Entidades
         [Display(Name = "Marca")]
         public int MarcaId { get; set; }
 
+        [Required(ErrorMessage = "Se requiere seleccionar el {0}")]
+        [Display(Name = "Nombre")]
+        public string Nombre { get; set; }
+
         [Required(ErrorMessage = "Se requiere el {0}")]
         [Display(Name = "Modelo")]
         [MaxLength(25)]
