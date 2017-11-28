@@ -75,5 +75,7 @@ namespace MVC.Contexto
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<OrdenEntrada> OrdenEntradas { get; set; }
         public DbSet<Adelanto> Adelantos { get; set; }
+
+        public System.Data.Entity.DbSet<MVC.Entidades.Equipo> Equipoes { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace MVC.Entidades
         [MaxLength(100)]
         public string Descripcion { get; set; }
 
-        [Display(Name = "Descripcion Técnica")]
+        [Display(Name = "Descripción Técnica")]
         [MaxLength(150)]
         public string DescripcionTecnica { get; set; }
 

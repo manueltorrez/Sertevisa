@@ -205,15 +205,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Contexto\ModeloContexto.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdelantosController.cs" />
     <Compile Include="Controllers\ApplicationRolesController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\FacturaDetallesController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
+    <Compile Include="Controllers\OrdenEntradasController.cs" />
     <Compile Include="Entidades\Adelanto.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Desglose.cs" />
@@ -522,11 +525,26 @@
     <Content Include="Views\Facturas\Details.cshtml" />
     <Content Include="Views\Facturas\Edit.cshtml" />
     <Content Include="Views\Facturas\Index.cshtml" />
-    <Content Include="Views\FacturaDetalles\Create.cshtml" />
+    <Content Include="Views\FacturaDetalles\_Create.cshtml" />
     <Content Include="Views\FacturaDetalles\Delete.cshtml" />
     <Content Include="Views\FacturaDetalles\Details.cshtml" />
     <Content Include="Views\FacturaDetalles\Edit.cshtml" />
-    <Content Include="Views\FacturaDetalles\Index.cshtml" />
+    <Content Include="Views\FacturaDetalles\_Index.cshtml" />
+    <Content Include="Views\Equipos\Create.cshtml" />
+    <Content Include="Views\Equipos\Delete.cshtml" />
+    <Content Include="Views\Equipos\Details.cshtml" />
+    <Content Include="Views\Equipos\Edit.cshtml" />
+    <Content Include="Views\Equipos\Index.cshtml" />
+    <Content Include="Views\Adelantos\Create.cshtml" />
+    <Content Include="Views\Adelantos\Delete.cshtml" />
+    <Content Include="Views\Adelantos\Details.cshtml" />
+    <Content Include="Views\Adelantos\Edit.cshtml" />
+    <Content Include="Views\Adelantos\Index.cshtml" />
+    <Content Include="Views\OrdenEntradas\Create.cshtml" />
+    <Content Include="Views\OrdenEntradas\Delete.cshtml" />
+    <Content Include="Views\OrdenEntradas\Details.cshtml" />
+    <Content Include="Views\OrdenEntradas\Edit.cshtml" />
+    <Content Include="Views\OrdenEntradas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

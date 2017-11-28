@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MVC.Entidades.FacturaDetalle>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Detalle de Productos</strong>
+    </div>
+
+    <table class="table table-hover table-striped table-condensed small">
+        <tr>
+            <th>
+                <p>
+
+                    @Html.ActionLink("Agregar", "Create", "DetalleFacturas",
+                        new { facturaId = ViewBag.FacturaId },
+                        new { @class = "btn btn-primary btn-rounded", data_modal = "facturaDeta" })
+                </p>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Facturas.FacturaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrdenEntradas.NumeroSerie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", "DetalleFacturas", new { id = item.FacturaDetalleId }, new { @class = "btn btn-primary btn-rounded", data_modal = "FacturaDeta" })
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Facturas.FacturaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrdenEntradas.NumeroSerie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
+</div>

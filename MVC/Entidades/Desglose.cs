@@ -15,7 +15,7 @@ namespace MVC.Entidades
         public int DesgloseId { get; set; }
 
         [Required(ErrorMessage = "Se requiere la {0}")]
-        [Display(Name = "FacturaId")]
+        [Display(Name = "Factura")]
         public int FacturaId { get; set; }
 
         [Required(ErrorMessage = "Se requiere la {0}")]
