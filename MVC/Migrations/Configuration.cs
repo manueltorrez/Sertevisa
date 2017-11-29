@@ -14,7 +14,7 @@ namespace MVC.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(MVC.Contexto.ModeloContexto context)
