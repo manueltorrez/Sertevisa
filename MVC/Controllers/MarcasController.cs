@@ -85,7 +85,7 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nombre, DateCreation, DateModification, Control")] Marca marca)
+        public ActionResult Create([Bind(Include = "Nombre, DateCreation, DateModification, Activo, Control")] Marca marca)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace MVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nombre, DateCreation, DateModification, Control")] Marca marca)
+        public ActionResult Edit([Bind(Include = "ID,Nombre, DateCreation, DateModification, Activo, Control")] Marca marca)
         {
             try
             {

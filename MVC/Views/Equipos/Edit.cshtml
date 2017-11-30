@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.DateCreation, new { @Value = @DateTime.Now.ToShortDateString() })
         @Html.HiddenFor(model => model.DateModification, new { @Value = @DateTime.Now.ToShortDateString() })
-
+        @Html.HiddenFor(model => model.Control)
         @Html.HiddenFor(model => model.EquipoId)
 
         <div class="form-group">

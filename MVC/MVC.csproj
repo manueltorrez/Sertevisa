@@ -527,9 +527,9 @@
     <Content Include="Views\Facturas\Edit.cshtml" />
     <Content Include="Views\Facturas\Index.cshtml" />
     <Content Include="Views\FacturaDetalles\_Create.cshtml" />
-    <Content Include="Views\FacturaDetalles\Delete.cshtml" />
+    <Content Include="Views\FacturaDetalles\_Delete.cshtml" />
     <Content Include="Views\FacturaDetalles\Details.cshtml" />
-    <Content Include="Views\FacturaDetalles\Edit.cshtml" />
+    <Content Include="Views\FacturaDetalles\_Edit.cshtml" />
     <Content Include="Views\FacturaDetalles\_Index.cshtml" />
     <Content Include="Views\Adelantos\Create.cshtml" />
     <Content Include="Views\Adelantos\Delete.cshtml" />

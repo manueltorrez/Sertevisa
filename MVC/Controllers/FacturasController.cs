@@ -18,7 +18,7 @@ namespace MVC.Controllers
         // GET: Facturas
         public ActionResult Index()
         {
-            var facturas = db.Facturas.Include(f => f.Clientes);
+            var facturas = db.Facturas.Include(f => f.Clientes).Where(f=>f.Active==true);
             return View(facturas.ToList());
         }
 
@@ -49,17 +49,17 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FacturaId,ClienteId,Fecha,Numero,DateCreation,DateModification,Control")] Factura factura)
+        public ActionResult Create([Bind(Include = "FacturaId,ClienteId,Fecha,Numero,DateCreation,DateModification,Control, Active")] Factura factura)
         {
             if (ModelState.IsValid)
             {
                 db.Facturas.Add(factura);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { controller = "Facturas", action = "Edit", Id = factura.FacturaId });
             }
 
             ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nombre1", factura.ClienteId);
-            return RedirectToAction("Edit", new { controller = "Facturas", action = "Edit", Id = factura.FacturaId });
+            return View(factura);
         }
 
         // GET: Facturas/Edit/5
@@ -83,7 +83,7 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FacturaId,ClienteId,Fecha,Total,Numero,DateCreation,DateModification,Control")] Factura factura)
+        public ActionResult Edit([Bind(Include = "FacturaId,ClienteId,Fecha,Total,Numero,DateCreation,DateModification,Control, Active")] Factura factura)
         {
             if (ModelState.IsValid)
             {

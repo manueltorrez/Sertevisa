@@ -51,7 +51,7 @@ namespace MVC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrdenEntradaId,ClienteId,EquipoId,EstadoId,NumeroSerie,Descripcion,DescripcionTecnica,FechaIngreso,FechaEgreso,DateCreation,DateModification,Control")] OrdenEntrada ordenEntrada)
+        public ActionResult Create([Bind(Include = "OrdenEntradaId,ClienteId,EquipoId,EstadoId,NumeroSerie,Descripcion,FechaIngreso,DateCreation,DateModification,Control")] OrdenEntrada ordenEntrada)
         {
             if (ModelState.IsValid)
             {

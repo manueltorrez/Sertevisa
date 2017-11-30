@@ -153,8 +153,8 @@ namespace MVC.Migrations
                 
                 DECLARE @facturaSum Decimal(18,2)
                 
-                select @facturaSum = sum((PrecioVenta * Cantidad))
-                from DetalleFacturas
+                select @facturaSum = sum((Precio * Cantidad))
+                from FacturaDetalle
                 where FacturaId = @facturaId
                 and Active = 1
 

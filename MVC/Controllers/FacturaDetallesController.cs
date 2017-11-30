@@ -42,7 +42,7 @@ namespace MVC.Controllers
         public ActionResult Create(int facturaId)
         {
             ViewBag.FacturaId = facturaId;
-            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica");
+            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "NumeroSerie");
 
             FacturaDetalle nuevaFacturaDetalle = new FacturaDetalle();
             nuevaFacturaDetalle.FacturaId = facturaId;
@@ -55,7 +55,7 @@ namespace MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "FacturaDetalleId,FacturaId,OrdenEntradaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
-        public ActionResult Create([Bind(Include = "FacturaDetalleId,FacturaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
+        public ActionResult Create([Bind(Include = "FacturaDetalleId,OrdenEntradaId, FacturaId,Descripcion,Precio, Cantidad, Subtotal, Active,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace MVC.Controllers
             }
 
             ViewBag.FacturaId = new SelectList(db.Facturas, "FacturaId", "FacturaId", facturaDetalle.FacturaId);
-            //ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
+            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "NumeroSerie", facturaDetalle.OrdenEntradaId);
             return View(facturaDetalle);
         }
 
@@ -81,9 +81,13 @@ namespace MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FacturaId = new SelectList(db.Facturas, "FacturaId", "FacturaId", facturaDetalle.FacturaId);
-            //ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
-            return View(facturaDetalle);
+            //ViewBag.FacturaId = new SelectList(db.Facturas, "FacturaId", "FacturaId", facturaDetalle.FacturaId);
+            //ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "NumeroSerie", facturaDetalle.OrdenEntradaId);
+            //return View(facturaDetalle);
+
+            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "NumeroSerie");
+            
+            return PartialView("_Edit", facturaDetalle);
         }
 
         // POST: FacturaDetalles/Edit/5
@@ -92,16 +96,16 @@ namespace MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "FacturaDetalleId,FacturaId,OrdenEntradaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
-        public ActionResult Edit([Bind(Include = "FacturaDetalleId,FacturaId,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
+        public ActionResult Edit([Bind(Include = "FacturaDetalleId,FacturaId,OrdenEntradaId, Cantidad, Subtotal, Active,Descripcion,Precio,DateCreation,DateModification,Control")] FacturaDetalle facturaDetalle)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(facturaDetalle).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
             ViewBag.FacturaId = new SelectList(db.Facturas, "FacturaId", "FacturaId", facturaDetalle.FacturaId);
-            //ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "DescripcionTecnica", facturaDetalle.OrdenEntradaId);
+            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "NumeroSerie", facturaDetalle.OrdenEntradaId);
             return View(facturaDetalle);
         }
 
@@ -117,7 +121,10 @@ namespace MVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(facturaDetalle);
+
+            ViewBag.OrdenEntradaId = new SelectList(db.OrdenEntradas, "OrdenEntradaId", "NumeroSerie");
+            return PartialView("_Delete", facturaDetalle);
+            //return View(facturaDetalle);
         }
 
         // POST: FacturaDetalles/Delete/5
@@ -128,7 +135,7 @@ namespace MVC.Controllers
             FacturaDetalle facturaDetalle = db.FacturaDetalles.Find(id);
             db.FacturaDetalles.Remove(facturaDetalle);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(new { success = true });
         }
 
         protected override void Dispose(bool disposing)

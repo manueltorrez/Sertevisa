@@ -38,7 +38,7 @@
 
 function recalculatePart() {
     var quantity = parseInt(document.getElementById("Cantidad").value).toFixed(0);
-    var unitPrice = parseFloat(document.getElementById("PrecioVenta").value).toFixed(2);
+    var unitPrice = parseFloat(document.getElementById("Precio").value).toFixed(2);
 
     if (isNaN(quantity)) {
         quantity = 0;
@@ -49,21 +49,21 @@ function recalculatePart() {
     }
 
     document.getElementById("Cantidad").value = quantity;
-    document.getElementById("PrecioVenta").value = unitPrice;
+    document.getElementById("Precio").value = unitPrice;
 
     document.getElementById("Subtotal").value = (quantity * unitPrice).toFixed(2);
 }
 
 $(document).ready(function () {
-    $(document).on('change', '.productSelect', function () {
-        var prodId = $('option:selected', this).attr('value');
-        $.ajax({
-            url: "/DetalleFacturas/GetProductInfo?productId=" + prodId,
-            type: 'GET'
-        }).done(function (price) {
-            $('.tbPrecio').val(price);
-        });
-    });
+    //$(document).on('change', '.productSelect', function () {
+    //    var prodId = $('option:selected', this).attr('value');
+    //    $.ajax({
+    //        url: "/DetalleFacturas/GetProductInfo?productId=" + prodId,
+    //        type: 'GET'
+    //    }).done(function (price) {
+    //        $('.tbPrecio').val(price);
+    //    });
+    //});
 
     $(document).on('change', '.cantidad', function () {
         recalculatePart();

@@ -2,30 +2,36 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <strong>Detalle de Productos</strong>
+        <strong>Detalle de Productos</strong> <p>
+
+    @Html.ActionLink("Agregar", "Create", "FacturaDetalles",
+                        new { facturaId = ViewBag.FacturaId },
+                        new { @class = "btn btn-primary btn-rounded", data_modal = "facturaDeta" })
+</p>
     </div>
 
     <table class="table table-hover table-striped table-condensed small">
         <tr>
             <th>
-                <p>
 
-                    @Html.ActionLink("Agregar", "Create", "DetalleFacturas",
-                        new { facturaId = ViewBag.FacturaId },
-                        new { @class = "btn btn-primary btn-rounded", data_modal = "facturaDeta" })
-                </p>
 
-            <th>
+                @*<th>
                 @Html.DisplayNameFor(model => model.Facturas.FacturaId)
-            </th>
-            @*<th>
+            </th>*@
+                @*<th>
                 @Html.DisplayNameFor(model => model.OrdenEntradas.EquipoId)
             </th>*@
+            <th>
+                @*@Html.Display("Acciones")*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Subtotal)
@@ -37,12 +43,18 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", "DetalleFacturas", new { id = item.FacturaDetalleId }, new { @class = "btn btn-primary btn-rounded", data_modal = "FacturaDeta" })
-
+                    @Html.ActionLink("Editar", "Edit", "FacturaDetalles",
+                        new { id = item.FacturaDetalleId },
+                        new { @class = "btn btn-primary btn-rounded", data_modal = "facturaDeta" })                    
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Facturas.FacturaId)
+                    @Html.ActionLink("Eliminar", "Delete", "FacturaDetalles",
+                        new { id = item.FacturaDetalleId },
+                        new { @class = "btn btn-primary btn-rounded", data_modal = "facturaDeta" })
                 </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Facturas.FacturaId)
+                </td>*@
                 @*<td>
                     @Html.DisplayFor(modelItem => item.OrdenEntradas.NumeroSerie)
                 </td>*@
@@ -51,6 +63,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Subtotal)
