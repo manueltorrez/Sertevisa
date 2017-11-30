@@ -50,7 +50,7 @@ namespace MVC.Entidades
 
         [DataType(DataType.Date)]
         [ScaffoldColumn(false)]
-        public int FechaEgreso { get; set; }
+        public DateTime FechaEgreso { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
