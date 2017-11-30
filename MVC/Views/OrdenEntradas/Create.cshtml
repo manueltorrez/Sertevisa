@@ -18,6 +18,7 @@
         @Html.HiddenFor(model => model.DateCreation, new { @Value = @DateTime.Now.ToShortDateString() })
         @Html.HiddenFor(model => model.DateModification, new { @Value = @DateTime.Now.ToShortDateString() })
         @Html.HiddenFor(model => model.Control)
+		@Html.HiddenFor(model => model.Activo, new { @Value = true })
 
         <div class="form-group">
             @Html.LabelFor(model => model.ClienteId, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })

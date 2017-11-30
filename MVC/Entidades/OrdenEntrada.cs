@@ -31,6 +31,9 @@ namespace MVC.Entidades
         [MaxLength(30)]
         public string NumeroSerie { get; set; }
 
+        [Display(Name = "Activo")]
+        public bool Activo { get; set; }
+
         [Required(ErrorMessage = "Se requiere seleccionar la {0}")]
         [Display(Name = "Descripción")]
         [MaxLength(100)]
